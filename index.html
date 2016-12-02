@@ -12,7 +12,7 @@
 		<p>Sauntering times below...</p>
 	</div>
 	<div class="current-schedule table-responsive">
-		<table class="table">
+		<table class="table" id="train-table">
 			<caption>Current Schedule</caption>
 			<tbody>
 				<tr>
@@ -30,26 +30,26 @@
 		<form>
 		  <div class="form-group">
 		    <label for="train-name">Train Name</label>
-		    <input type="text" class="form-control" id="train-name" placeholder="Train Name">
+		    <input type="text" class="form-control" id="train-name">
 		  </div>
 		  <div class="form-group">
 		    <label for="destination">Destination</label>
-		    <input type="text" class="form-control" id="destination" placeholder="Olympia, Washington">
+		    <input type="text" class="form-control" id="destination">
 		  </div>
 		  <div class="form-group">
 		    <label for="first-train-time">First Train Time (24-Hour Clock Notation)</label>
-		    <input type="text" class="form-control" id="first-train-time" placeholder="24:00">
+		    <input type="time" class="form-control" id="first-train-time" placeholder="24:00">
 		  </div>
 		  <div class="form-group">
 		    <label for="frequency">Frequency (min)</label>
-		    <input type="text" class="form-control" id="frequency" placeholder="20">
+		    <input type="text" class="form-control" id="frequency">
 		  </div>
-		  <button type="submit" class="btn btn-default">Submit</button>
+		  <button type="submit" class="btn btn-default" id="add-train-btn">Submit</button>
 		</form>
 	
-
-	
-	<script scr="assets/js/javascript.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+	<script src="assets/js/javascript.js"></script>	
 </body>
 </html>

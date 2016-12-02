@@ -10,10 +10,17 @@
 
   var database = firebase.database();
 
-  var trainName = $('#train-name').val().trim();
-  var trainDestination = $('#destination').val().trim();
-  var firstTime = $('#first-train-time').val().trim();
-  var trainFrequency = $('#frequency').val().trim();
+  var trainName;
+  var trainDestination;
+  var firstTime;
+  var trainFrequency;
+
+ $('#add-train-btn').on('click', function () {
+
+  trainName = $('#train-name').val().trim();
+  trainDestination = $('#destination').val().trim();
+  firstTime = $('#first-train-time').val().trim();
+  trainFrequency = $('#frequency').val().trim();
 
   database.ref().set({
 
@@ -21,5 +28,24 @@
   	trainDestination: trainDestination,
   	firstTime: firstTime,
   	trainFrequency: trainFrequency
-  	
+
   });
+
+	console.log(trainName);
+	console.log(trainDestination);
+	console.log(firstTime);
+	console.log(trainFrequency);  
+
+	return false;
+});
+
+ 	database.ref().on('value', function(snapshot) {
+
+ 		console.log(snapshot.val());
+
+ 		$('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td></tr>');
+
+ 	});
+ 	
+ 	
+      console.log("CURRENT TIME: " + moment().format("hh:mm"));

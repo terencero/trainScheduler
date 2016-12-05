@@ -15,6 +15,16 @@
   var firstTime;
   var trainFrequency;
 
+  $('#first-train-time').timepicker({
+                minuteStep: 1,
+                template: 'modal',
+                appendWidgetTo: 'body',
+                showSeconds: false,
+                showMeridian: false,
+                defaultTime: false
+            });
+
+
  $('#add-train-btn').on('click', function () {
 
   trainName = $('#train-name').val().trim();
@@ -22,21 +32,23 @@
   firstTime = $('#first-train-time').val().trim();
   trainFrequency = $('#frequency').val().trim();
 
-  database.ref().set({
+	  $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextTrain + '</td><td>' + tMinutesTillTrain + '</td></tr>');
 
-  	trainName: trainName,
-  	trainDestination: trainDestination,
-  	firstTime: firstTime,
-  	trainFrequency: trainFrequency
+	  database.ref().set({
 
-  });
+	  	trainName: trainName,
+	  	trainDestination: trainDestination,
+	  	firstTime: firstTime,
+	  	trainFrequency: trainFrequency
 
-	console.log(trainName);
-	console.log(trainDestination);
-	console.log(firstTime);
-	console.log(trainFrequency);  
+	  });
 
-	return false;
+		console.log(trainName);
+		console.log(trainDestination);
+		console.log(firstTime);
+		console.log(trainFrequency);  
+
+		return false;
 });
 
 // First Time (pushed back 1 year to make sure it comes before current time)

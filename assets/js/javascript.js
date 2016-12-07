@@ -35,8 +35,6 @@
   firstTime = $('#first-train-time').val().trim();
   trainFrequency = $('#frequency').val().trim();
 
-	  $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextTrain + '</td><td>' + tMinutesTillTrain + '</td></tr>');
-
 	  database.ref().push({
 
 	  	trainName: trainName,
@@ -51,7 +49,7 @@
 		console.log(firstTime);
 		console.log(trainFrequency);  
 
-	// First Time (pushed back 1 year to make sure it comes before current time)
+// First Time (pushed back 1 year to make sure it comes before current time)
  	
     var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
     console.log(firstTimeConverted);
@@ -74,7 +72,10 @@
 
 // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm")); 	
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
+// append the calculations and user input
+    $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextTrain + '</td><td>' + tMinutesTillTrain + '</td></tr>'); 	
 
 		return false;
 });

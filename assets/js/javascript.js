@@ -51,31 +51,31 @@
 
 // First Time (pushed back 1 year to make sure it comes before current time)
  	
-    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
+    var firstTimeConverted = moment(firstTime, 'hh:mm a').subtract(1, 'years');
     console.log(firstTimeConverted);
 
 // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+    var currentTime = moment().format('hh:mm a');
+    console.log('CURRENT TIME: ' + currentTime);
 
 // Difference between the times
-      var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-      console.log("DIFFERENCE IN TIME: " + diffTime);    
+      var diffTime = moment().diff(moment(firstTimeConverted), 'minutes');
+      console.log('DIFFERENCE IN TIME: ' + diffTime);    
 
 // Time apart (remainder)
     var tRemainder = diffTime % trainFrequency;
     console.log(tRemainder); 
 
-// Minute Until Train
+// Minutes until the next train
     var tMinutesTillTrain = trainFrequency - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+    console.log('MINUTES TILL TRAIN: ' + tMinutesTillTrain);
 
 // Next Train
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+    var nextArrival = moment().add(tMinutesTillTrain, 'minutes').format('hh:mm a');
+    console.log('ARRIVAL TIME: ' + nextArrival);
 
 // append the calculations and user input
-    $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextTrain + '</td><td>' + tMinutesTillTrain + '</td></tr>'); 	
+    $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextArrival + '</td><td>' + tMinutesTillTrain + '</td></tr>'); 	
 
 		return false;
 });

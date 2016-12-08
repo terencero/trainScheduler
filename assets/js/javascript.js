@@ -47,7 +47,19 @@
 		console.log(trainName);
 		console.log(trainDestination);
 		console.log(firstTime);
-		console.log(trainFrequency);  
+		console.log(trainFrequency);
+return false;
+});
+
+		
+
+
+database.ref().on('child_added', function(snapshot){
+
+	trainName = snapshot.val().trainName;
+	trainDestination = snapshot.val().trainDestination;
+	firstTime = snapshot.val().firstTime;
+	trainFrequency = snapshot.val().trainFrequency;
 
 // First Time (pushed back 1 year to make sure it comes before current time)
  	
@@ -75,20 +87,13 @@
     console.log('ARRIVAL TIME: ' + nextArrival);
 
 // append the calculations and user input
+
+		
+
     $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextArrival + '</td><td>' + tMinutesTillTrain + '</td></tr>'); 	
-
-		return false;
-});
-
-    
-
- 	database.ref().on('value', function(snapshot) {
-
- 		console.log(snapshot.val());
-
- 		// $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextTrain + '</td><td>' + tMinutesTillTrain + '</td></tr>');
-
- 	});
- 	
- 	
+ 	return false;
+}); 	
       console.log("CURRENT TIME: " + moment().format("hh:mm"));
+
+
+

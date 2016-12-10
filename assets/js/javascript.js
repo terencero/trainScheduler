@@ -51,8 +51,6 @@
 return false;
 });
 
-		
-
 
 database.ref().on('child_added', function(snapshot){
 
@@ -80,6 +78,13 @@ database.ref().on('child_added', function(snapshot){
 
 // Minutes until the next train
     var tMinutesTillTrain = trainFrequency - tRemainder;
+    function startCount(){
+    	counter = setInterval(count, 10000);
+    }
+    function countMinutesTillTrain(){
+    	tMinutesTillTrain = tMinutesTillTrain--;
+    }
+    
     console.log('MINUTES TILL TRAIN: ' + tMinutesTillTrain);
 
 // Next Train
@@ -88,12 +93,24 @@ database.ref().on('child_added', function(snapshot){
 
 // append the calculations and user input
 
-		
+    $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextArrival + '</td><td>' + tMinutesTillTrain + '</td></tr>');
 
-    $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextArrival + '</td><td>' + tMinutesTillTrain + '</td></tr>'); 	
+//     var counter = 0;
+
+// var trainTimeTracker = {
+// 		time: tMinutesTillTrain,
+// 		start: function(){
+// 			counter = setInterval(trainTimeTracker.count, 10000);
+// 		},
+// 		count: function(){
+// 			trainTimeTracker.time--;
+
+// 		}
+// };       	
  	return false;
 }); 	
       console.log("CURRENT TIME: " + moment().format("hh:mm"));
+
 
 
 

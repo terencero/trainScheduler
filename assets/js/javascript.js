@@ -25,16 +25,14 @@
                 defaultTime: false
             });
 
-    
-
-
+// grab value input from user after clicking submit button
  $('#add-train-btn').on('click', function () {
 
   trainName = $('#train-name').val().trim();
   trainDestination = $('#destination').val().trim();
   firstTime = $('#first-train-time').val().trim();
   trainFrequency = $('#frequency').val().trim();
-
+// push user input to firebase
 	  database.ref().push({
 
 	  	trainName: trainName,
@@ -44,14 +42,10 @@
 
 	  });
 
-		console.log(trainName);
-		console.log(trainDestination);
-		console.log(firstTime);
-		console.log(trainFrequency);
 return false;
 });
 
-
+// grab user input updates from firebase
 database.ref().on('child_added', function(snapshot){
 
 	trainName = snapshot.val().trainName;
@@ -78,38 +72,19 @@ database.ref().on('child_added', function(snapshot){
 
 // Minutes until the next train
     var tMinutesTillTrain = trainFrequency - tRemainder;
-    function startCount(){
-    	counter = setInterval(count, 10000);
-    }
-    function countMinutesTillTrain(){
-    	tMinutesTillTrain = tMinutesTillTrain--;
-    }
-    
     console.log('MINUTES TILL TRAIN: ' + tMinutesTillTrain);
 
 // Next Train
     var nextArrival = moment().add(tMinutesTillTrain, 'minutes').format('hh:mm a');
     console.log('ARRIVAL TIME: ' + nextArrival);
 
-// append the calculations and user input
+// append the calculations and user input after grabbing update from firebase child added snapshot
 
     $('#train-table').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFrequency + '</td><td>' + nextArrival + '</td><td>' + tMinutesTillTrain + '</td></tr>');
 
-//     var counter = 0;
-
-// var trainTimeTracker = {
-// 		time: tMinutesTillTrain,
-// 		start: function(){
-// 			counter = setInterval(trainTimeTracker.count, 10000);
-// 		},
-// 		count: function(){
-// 			trainTimeTracker.time--;
-
-// 		}
 // };       	
  	return false;
 }); 	
-      console.log("CURRENT TIME: " + moment().format("hh:mm"));
 
 
 
